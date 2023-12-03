@@ -3,7 +3,7 @@
 
 use helloworld1::{self as _, *}; // global logger + panicking-behavior + memory layout
 use heapless::Vec;
-use f072b_disco_bsp::leds::*;
+use f072b_disco_bsp::{leds::*, button::*, common::bsp_hw_manage};
 
 #[cortex_m_rt::entry]
 fn main() -> ! {
@@ -14,10 +14,11 @@ fn main() -> ! {
     vector.push(255).unwrap();
     defmt::println!("{:?}", vector.as_slice());
     bsp_set_led(Led::RED, true);
-    //helloworld1::bsp_set_led(Led::BLUE, true);
+    bsp_set_led(Led::BLUE, true);
     bsp_set_led(Led::ORANGE, true);
     bsp_set_led(Led::GREEN, true);
+    bsp_button_assign_action(|| bsp_toggle_led(Led::BLUE));
     loop {
-        
+        bsp_hw_manage()
     }
 }
