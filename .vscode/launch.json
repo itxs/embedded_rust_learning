@@ -18,7 +18,8 @@
             "coreConfigs": [
                 {
                     "coreIndex": 0,
-                    "programBinary": "./target/thumbv6m-none-eabi/debug/hello"
+                    "programBinary": "./target/thumbv6m-none-eabi/debug/hello",
+                    "svdFile": "STM32F0x2.svd"
                 }
             ]
         },
